@@ -37,6 +37,10 @@ final class HomeView: UIView {
         tableView.dataSource = dataSource
     }
 
+    func setTableView(delegate: UITableViewDelegate) {
+        tableView.delegate = delegate
+    }
+
     func reloadTableView() {
         tableView.reloadData()
     }

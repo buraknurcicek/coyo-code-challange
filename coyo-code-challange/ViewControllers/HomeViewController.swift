@@ -13,7 +13,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Private Properties
     private let homeView = HomeView()
     private var viewModel: HomeViewModel
-    private var dataManager = HomeDataSourceManager(viewModels: [])
+    private var tableViewManager = HomeTableViewManager(viewModels: [])
     private var alertFactory: AlertFactoryService = AlertHelper()
 
     // MARK: - Init
@@ -35,19 +35,16 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeView.delegate = self
-        alertFactory.delegate = self
-        viewModel.delegate = self
+        setDelegates()
         viewModel.fetchData()
     }
 
-    // MARK: - Accessible Functions
-    func setDailyForecastTableView(dataSource: UITableViewDataSource) {
-        homeView.tableView.dataSource = dataSource
-    }
-
-    func reloadTableView() {
-        homeView.tableView.reloadData()
+    // MARK: - Private Functions
+    private func setDelegates() {
+        homeView.delegate = self
+        alertFactory.delegate = self
+        tableViewManager.delegate = self
+        viewModel.delegate = self
     }
 
     private func showAlert() {
@@ -58,12 +55,21 @@ final class HomeViewController: UIViewController {
         let alert = alertFactory.build(alertData: alertData)
         present(alert, animated: true, completion: nil)
     }
+
+    // MARK: - Navigation
+    private func pushToPostDetail(index: Int) {
+        let viewModel = PostDetailViewModel(post: viewModel.getPost(index: index))
+        let controller = PostDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
-extension HomeViewController: HomeViewModelProtocol {
+// MARK: - HomeViewModelDelegate
+extension HomeViewController: HomeViewModelDelegate {
     func populateTableView(with viewModels: [PostCell.ViewModel]) {
-        dataManager = HomeDataSourceManager(viewModels: viewModels)
-        homeView.setTableView(dataSource: dataManager)
+        tableViewManager = HomeTableViewManager(viewModels: viewModels)
+        homeView.setTableView(dataSource: tableViewManager)
+        homeView.setTableView(delegate: tableViewManager)
         homeView.reloadTableView()
     }
 
@@ -76,12 +82,21 @@ extension HomeViewController: HomeViewModelProtocol {
     }
 }
 
+// MARK: - HomeTableViewManagerDelegate
+extension HomeViewController: HomeTableViewManagerDelegate {
+    func didSelect(indexPath: IndexPath) {
+        pushToPostDetail(index: indexPath.row)
+    }
+}
+
+// MARK: - HomeViewDelegate
 extension HomeViewController: HomeViewDelegate {
     func refresh() {
         viewModel.fetchData()
     }
 }
 
+// MARK: - HomeViewDelegate
 extension HomeViewController: AlertActionDelegate {
     func okAction() {
         dismiss(animated: true)

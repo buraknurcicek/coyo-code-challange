@@ -10,6 +10,7 @@ enum LocalizableManager: GenericValueProtocol {
     typealias Value = String
 
     case main_title
+    case post_detail_title
     case general_ok
     case general_error_title
     case general_error_description
@@ -18,6 +19,8 @@ enum LocalizableManager: GenericValueProtocol {
         switch self {
         case .main_title:
             return "main_title".toLocalize()
+        case .post_detail_title:
+            return "post_detail_title".toLocalize()
         case .general_ok:
             return "general_ok".toLocalize()
         case .general_error_title:

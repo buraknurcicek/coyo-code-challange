@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - HomeViewModelProtocol
-protocol HomeViewModelProtocol: AnyObject {
+// MARK: - HomeViewModelDelegate
+protocol HomeViewModelDelegate: AnyObject {
     func populateTableView(with viewModels: [PostCell.ViewModel])
     func completedWithError()
     func showPlaceholderView()
@@ -19,19 +19,24 @@ final class HomeViewModel: NSObject {
 
     // MARK: - Properties
     private var cellViewModels: [PostCell.ViewModel] = []
-
-    weak var delegate: HomeViewModelProtocol?
+    private var posts: [Post] = []
+    weak var delegate: HomeViewModelDelegate?
 
     // MARK: - Accessible Functions
     func fetchData() {
         PostsRequest().execute(
             onSuccess: { [weak self] posts in
+                self?.posts = posts
                 self?.configure(with: posts)
             }, onError: { [weak self] (_) in
                 self?.delegate?.completedWithError()
             })
     }
 
+    func getPost(index: Int) -> Post {
+        return posts[index]
+    }
+    
     // MARK: - Private Functions
     private func configure(with posts: [Post]) {
         cellViewModels.removeAll()
