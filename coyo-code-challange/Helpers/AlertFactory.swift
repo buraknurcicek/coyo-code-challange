@@ -8,24 +8,29 @@
 import UIKit
 import Foundation
 
+// MARK: - AlertFactoryService
 protocol AlertFactoryService {
     var delegate: AlertActionDelegate? { get set }
     func build(alertData: AlertViewData) -> UIViewController
 }
 
+// MARK: - AlertActionDelegate
 protocol AlertActionDelegate: AnyObject {
     func okAction()
 }
 
-class AlertHelper: AlertFactoryService {
-    
+// MARK: - AlertHelper
+final class AlertHelper: AlertFactoryService {
+
+    // MARK: - Properties
     weak var delegate: AlertActionDelegate?
-    
+
+    // MARK: - Functions
     func build(alertData: AlertViewData) -> UIViewController {
         let controller = UIAlertController(title: alertData.title,
                                            message: alertData.message,
                                            preferredStyle: .alert)
-        
+
         let okAction = UIAlertAction(title: alertData.okActionTitle,
                                      style: .cancel) { (_) in
                 self.delegate?.okAction()
@@ -39,7 +44,7 @@ struct AlertViewData {
     let title: String
     let message: String
     let okActionTitle: String
-    
+
     init(title: String,
          message: String,
          style: UIAlertController.Style = .alert,

@@ -13,7 +13,7 @@ enum VisualContentsManager: GenericValueProtocol {
 
     var value: UIImage {
         switch self {
-       
+
         }
     }
 }

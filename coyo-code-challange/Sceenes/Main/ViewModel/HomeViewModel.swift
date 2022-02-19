@@ -17,14 +17,18 @@ protocol HomeViewModelProtocol: AnyObject {
 // MARK: - HomeViewModel
 final class HomeViewModel: NSObject {
 
+    // MARK: - Properties
     weak var delegate: HomeViewModelProtocol?
 
+    // MARK: - Functions
     func fetchData() {
-
-        PostsRequest().execute { (posts: [Post]) in
-            self.delegate?.completedWithError()
-        } onError: { (error: Error) in
-            print("rşekr")
-        }
+        PostsRequest().execute(
+            onSuccess: { (posts: [Post]) in
+                print(posts)
+            },
+            onError: { (_) in
+                self.delegate?.completedWithError()
+            }
+        )
     }
 }
