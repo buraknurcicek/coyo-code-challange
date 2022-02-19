@@ -13,6 +13,10 @@ final class HomeDataSourceManager: NSObject {
     // MARK: - Private Properties
     private let viewModels: [PostCell.ViewModel]
 
+    private enum Constant {
+        static let numberOfRows: Int = 10
+    }
+
     // MARK: - Init
     init(viewModels: [PostCell.ViewModel]) {
         self.viewModels = viewModels
@@ -22,7 +26,7 @@ final class HomeDataSourceManager: NSObject {
 // MARK: - UITableViewDataSource
 extension HomeDataSourceManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModels.count
+        return Constant.numberOfRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

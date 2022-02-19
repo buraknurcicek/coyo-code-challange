@@ -35,6 +35,7 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        homeView.delegate = self
         alertFactory.delegate = self
         viewModel.delegate = self
         viewModel.fetchData()
@@ -49,7 +50,6 @@ final class HomeViewController: UIViewController {
         homeView.tableView.reloadData()
     }
 
-    // MARK: - Private Functions
     private func showAlert() {
         let alertData = AlertViewData(title: LocalizableManager.general_error_title.value,
                                       message: LocalizableManager.general_error_description.value,
@@ -73,6 +73,12 @@ extension HomeViewController: HomeViewModelProtocol {
 
     func showPlaceholderView() {
         // TO DO - If is location services auth is denied, show placeholder view
+    }
+}
+
+extension HomeViewController: HomeViewDelegate {
+    func refresh() {
+        viewModel.fetchData()
     }
 }
 

@@ -11,9 +11,12 @@ enum VisualContentsManager: GenericValueProtocol {
 
     typealias Value = UIImage
 
+    case ic_coyo_logo
+
     var value: UIImage {
         switch self {
-
+        case .ic_coyo_logo:
+            return UIImage(named: "ic_coyo_logo")!
         }
     }
 }

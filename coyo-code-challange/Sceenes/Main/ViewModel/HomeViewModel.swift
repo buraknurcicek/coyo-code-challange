@@ -22,7 +22,7 @@ final class HomeViewModel: NSObject {
 
     weak var delegate: HomeViewModelProtocol?
 
-    // MARK: - Functions
+    // MARK: - Accessible Functions
     func fetchData() {
         PostsRequest().execute(
             onSuccess: { [weak self] posts in
@@ -32,7 +32,9 @@ final class HomeViewModel: NSObject {
             })
     }
 
+    // MARK: - Private Functions
     private func configure(with posts: [Post]) {
+        cellViewModels.removeAll()
         if posts.isEmpty {
             delegate?.showPlaceholderView()
             return

@@ -7,11 +7,20 @@
 
 import UIKit
 
+protocol HomeViewDelegate: AnyObject {
+    func refresh()
+}
+
 // MARK: - HomeView
 final class HomeView: UIView {
 
     // MARK: - Views
     lazy var tableView = makeTableView()
+
+    // MARK: - Properties
+    private let refreshControl = UIRefreshControl()
+
+    weak var delegate: HomeViewDelegate?
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -31,12 +40,19 @@ final class HomeView: UIView {
     func reloadTableView() {
         tableView.reloadData()
     }
+
+    // MARK: - Private Functions
+    @objc private func refresh(_ sender: AnyObject) {
+        refreshControl.endRefreshing()
+        delegate?.refresh()
+    }
 }
 
 // MARK: - Private Extensions
 private extension HomeView {
     func setupViews() {
         addTableView()
+        addRefreshControl()
     }
 
     func addTableView() {
@@ -49,12 +65,18 @@ private extension HomeView {
         ])
     }
 
+    func addRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+
     func makeTableView() -> UITableView {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PostCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }
 }
