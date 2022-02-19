@@ -43,6 +43,14 @@ final class PostCell: UITableViewCell, ReusableView {
        return nil
     }
 
+    // MARK: - Accessible Functions
+    static func createViewModel(with post: Post) -> ViewModel {
+        let viewModel = ViewModel()
+        viewModel.title = post.title
+        viewModel.description = post.body
+        return viewModel
+    }
+
     func populate(with viewModel: ViewModel) {
         postTitleLabel.text = viewModel.title
         postDescriptionLabel.text = viewModel.description

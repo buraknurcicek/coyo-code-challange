@@ -54,7 +54,6 @@ private extension HomeView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PostCell.self)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         return tableView
     }

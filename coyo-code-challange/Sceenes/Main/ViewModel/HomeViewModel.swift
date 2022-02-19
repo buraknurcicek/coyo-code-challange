@@ -18,17 +18,25 @@ protocol HomeViewModelProtocol: AnyObject {
 final class HomeViewModel: NSObject {
 
     // MARK: - Properties
+    private var cellViewModels: [PostCell.ViewModel] = []
+
     weak var delegate: HomeViewModelProtocol?
 
     // MARK: - Functions
     func fetchData() {
         PostsRequest().execute(
-            onSuccess: { (posts: [Post]) in
-                print(posts)
-            },
-            onError: { (_) in
-                self.delegate?.completedWithError()
-            }
-        )
+            onSuccess: { [weak self] posts in
+                self?.configure(with: posts)
+            }, onError: { [weak self] (_) in
+                self?.delegate?.completedWithError()
+            })
+    }
+
+    private func configure(with posts: [Post]) {
+        let viewModels = posts.map({
+            PostCell.createViewModel(with: $0)
+        })
+        cellViewModels.append(contentsOf: viewModels)
+        delegate?.populateTableView(with: cellViewModels)
     }
 }
