@@ -6,7 +6,7 @@
 //
 
 // MARK: - Post
-struct Post: Decodable {
+struct Post: Codable {
     let userId, id: Int?
     let title, body: String?
 }

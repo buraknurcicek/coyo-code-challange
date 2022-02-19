@@ -12,26 +12,24 @@ public enum ApiError: Error {
     case noData
 }
 
-public enum RequestMethod: String {
+public enum HTTPMethod: String {
     case get = "GET"
 }
 
 public struct RequestData {
-
     public let path: String
-    public let method: RequestMethod
-    public let queryParams: [String: Any?]?
+    public let method: HTTPMethod
     public let params: [String: Any?]?
     public let headers: [String: String]?
 
-    public init (path: String,
-                 method: RequestMethod = .get,
-                 queryParams: [String: Any?]? = nil,
-                 params: [String: Any?]? = nil,
-                 headers: [String: String]? = nil) {
+    public init (
+        path: String,
+        method: HTTPMethod = .get,
+        params: [String: Any?]? = nil,
+        headers: [String: String]? = nil
+    ) {
         self.path = path
         self.method = method
-        self.queryParams = queryParams
         self.params = params
         self.headers = headers
     }
@@ -43,10 +41,9 @@ public protocol RequestType {
 }
 
 public extension RequestType {
-
-    func execute(dispatcher: NetworkDispatcher = URLSessionNetworkDispatcher.shared,
-                 onSuccess: @escaping (ResponseType) -> Void,
-                 onError: @escaping (Error) -> Void ) {
+    func execute (dispatcher: NetworkDispatcher = URLSessionNetworkDispatcher.instance,
+                  onSuccess: @escaping (ResponseType) -> Void,
+                  onError: @escaping (Error) -> Void) {
         dispatcher.dispatch(
             request: self.data,
             onSuccess: { (responseData: Data) in
@@ -76,9 +73,7 @@ public protocol NetworkDispatcher {
 }
 
 public struct URLSessionNetworkDispatcher: NetworkDispatcher {
-
-    public static let shared = URLSessionNetworkDispatcher()
-
+    public static let instance = URLSessionNetworkDispatcher()
     private init() {}
 
     public func dispatch(request: RequestData, onSuccess: @escaping (Data) -> Void, onError: @escaping (Error) -> Void) {
@@ -94,22 +89,13 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
             if let params = request.params {
                 urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
             }
-            if let queryParams = request.queryParams {
-                guard var components = URLComponents(string: url.absoluteString) else {
-                    return
-                }
-                var queryItems: [URLQueryItem] = []
-
-                for (name, value) in queryParams {
-                    queryItems.append(URLQueryItem(name: name, value: value as? String))
-                }
-
-                components.queryItems = queryItems
-                urlRequest = URLRequest(url: components.url ?? url)
-            }
         } catch let error {
             onError(error)
             return
+        }
+
+        if let headers = request.headers {
+            urlRequest.allHTTPHeaderFields = headers
         }
 
         URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
