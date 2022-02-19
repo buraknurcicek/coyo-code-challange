@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  coyo-code-challange
+
+  Created by Burak Nurçiçek on 19.02.2022.
+  
+*/
+"general_ok" = "Ok";
+"general_error" = "Error";
