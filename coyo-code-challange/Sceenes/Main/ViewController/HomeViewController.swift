@@ -9,44 +9,55 @@ import UIKit
 
 // MARK: - HomeViewController
 final class HomeViewController: UIViewController {
-
+    
     // MARK: - Private Properties
     private let homeView = HomeView()
     private var viewModel: HomeViewModel
     private var dataManager = HomeDataSourceManager(viewModels: [])
-
+    private var alertFactory: AlertFactoryService = AlertHelper()
+    
     // MARK: - Private Properties
-
+    
     // MARK: - Init
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         return nil
     }
-
+    
     // MARK: - Life-Cycle
     override func loadView() {
         super.loadView()
         title = "Main"
         view = homeView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        alertFactory.delegate = self
         viewModel.delegate = self
         viewModel.fetchData()
     }
-
+    
     // MARK: - Accessible Functions
     func setDailyForecastTableView(dataSource: UITableViewDataSource) {
         homeView.tableView.dataSource = dataSource
     }
-
+    
     func reloadTableView() {
         homeView.tableView.reloadData()
+    }
+
+    private func showAlert() {
+        let alertData = AlertViewData(title: LocalizableManager.general_error_title.value,
+                                      message: LocalizableManager.general_error_description.value,
+                                      okActionTitle: LocalizableManager.general_ok.value)
+        
+        let alert = alertFactory.build(alertData: alertData)
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -57,11 +68,17 @@ extension HomeViewController: HomeViewModelProtocol{
         homeView.reloadTableView()
     }
 
-    func completedWithError(_ error: String) {
-        // TODO - Show Alert
+    func completedWithError() {
+        showAlert()
     }
     
     func showPlaceholderView() {
         // TODO - If is location services auth is denied, show placeholder view
+    }
+}
+
+extension HomeViewController: AlertActionDelegate {
+    func okAction() {
+        dismiss(animated: true)
     }
 }

@@ -6,5 +6,6 @@
   
 */
 "general_ok" = "Tamam";
-"general_error" = "Hata";
+"general_error_description" = "Bir hata oluştu";
+"general_error_title" = "Hata";
 "main_title" = "Ana Sayfa";

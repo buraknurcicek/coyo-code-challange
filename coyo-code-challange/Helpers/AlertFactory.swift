@@ -15,35 +15,22 @@ protocol AlertFactoryService {
 
 protocol AlertActionDelegate: AnyObject {
     func okAction()
-    func cancelAction()
 }
 
-class AlertImplementation: AlertFactoryService {
-
+class AlertHelper: AlertFactoryService {
+    
     weak var delegate: AlertActionDelegate?
-
+    
     func build(alertData: AlertViewData) -> UIViewController {
         let controller = UIAlertController(title: alertData.title,
-                                   message: alertData.message,
-                                   preferredStyle: alertData.style)
-
-        if alertData.enableOkAction {
-            let okAction = UIAlertAction(
-                           title: alertData.okActionTitle,
-                           style: alertData.okActionStyle) { (_) in
+                                           message: alertData.message,
+                                           preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: alertData.okActionTitle,
+                                     style: .cancel) { (_) in
                 self.delegate?.okAction()
-            }
-            controller.addAction(okAction)
         }
-
-        if alertData.enableCancelAction {
-            let cancelAction = UIAlertAction(
-                               title: alertData.cancelActionTitle,
-                               style: alertData.cancelActionStyle) { (_) in
-               self.delegate?.cancelAction()
-            }
-            controller.addAction(cancelAction)
-        }
+        controller.addAction(okAction)
         return controller
     }
 }
@@ -51,31 +38,14 @@ class AlertImplementation: AlertFactoryService {
 struct AlertViewData {
     let title: String
     let message: String
-    let style: UIAlertController.Style
-    let enableOkAction: Bool
     let okActionTitle: String
-    let okActionStyle: UIAlertAction.Style
-    let enableCancelAction: Bool
-    let cancelActionTitle: String
-    let cancelActionStyle: UIAlertAction.Style
-
+    
     init(title: String,
          message: String,
          style: UIAlertController.Style = .alert,
-         enableOkAction: Bool,
-         okActionTitle: String,
-         okActionStyle: UIAlertAction.Style,
-         enableCancelAction: Bool = false,
-         cancelActionTitle: String,
-         cancelActionStyle: UIAlertAction.Style = .cancel) {
+         okActionTitle: String) {
         self.title = title
         self.message = message
-        self.style = style
-        self.enableOkAction = enableOkAction
         self.okActionTitle = okActionTitle
-        self.okActionStyle = okActionStyle
-        self.enableCancelAction = enableCancelAction
-        self.cancelActionTitle = cancelActionTitle
-        self.cancelActionStyle = cancelActionStyle
     }
 }

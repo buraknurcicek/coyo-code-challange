@@ -13,9 +13,6 @@ final class HomeView: UIView {
     // MARK: - Views
     lazy var tableView = makeTableView()
 
-    private enum Constants {
-        static let headerHeight: CGFloat = 300
-    }
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)

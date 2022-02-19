@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59A38D1627C16504003410B8 /* PostsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A38D1527C16504003410B8 /* PostsRequest.swift */; };
 		59C8B44427C106A40033F347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B44327C106A40033F347 /* AppDelegate.swift */; };
 		59C8B44D27C106A50033F347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C8B44C27C106A50033F347 /* Assets.xcassets */; };
 		59C8B45027C106A50033F347 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59C8B44E27C106A50033F347 /* LaunchScreen.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		59A38D1527C16504003410B8 /* PostsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRequest.swift; sourceTree = "<group>"; };
 		59C8B44027C106A40033F347 /* coyo-code-challange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "coyo-code-challange.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C8B44327C106A40033F347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59C8B44C27C106A50033F347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		59C8B48A27C120870033F347 /* RequestModels */ = {
 			isa = PBXGroup;
 			children = (
+				59A38D1527C16504003410B8 /* PostsRequest.swift */,
 			);
 			path = RequestModels;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				59C8B47A27C117C40033F347 /* VisualContentsManagers.swift in Sources */,
 				59C8B48E27C120B30033F347 /* NetworkLayer.swift in Sources */,
 				59C8B49727C1260F0033F347 /* Post.swift in Sources */,
+				59A38D1627C16504003410B8 /* PostsRequest.swift in Sources */,
 				59C8B49027C1220E0033F347 /* AlertFactory.swift in Sources */,
 				59C8B49F27C144E80033F347 /* HomeDataSourceManager.swift in Sources */,
 				59C8B49D27C140490033F347 /* PostCell.swift in Sources */,

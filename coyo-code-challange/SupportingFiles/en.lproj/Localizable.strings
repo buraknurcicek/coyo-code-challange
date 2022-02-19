@@ -6,5 +6,6 @@
   
 */
 "general_ok" = "Ok";
-"general_error" = "Error";
+"general_error_description" = "An error occured";
+"general_error_title" = "Error";
 "main_title" = "Main";
