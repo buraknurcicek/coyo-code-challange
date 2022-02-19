@@ -13,7 +13,6 @@
 		59C8B46827C116660033F347 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B46727C116660033F347 /* HomeViewModel.swift */; };
 		59C8B46A27C116880033F347 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B46927C116880033F347 /* HomeViewController.swift */; };
 		59C8B46C27C116A70033F347 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B46B27C116A70033F347 /* HomeView.swift */; };
-		59C8B47227C1173A0033F347 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47127C1173A0033F347 /* BaseViewController.swift */; };
 		59C8B47427C1176D0033F347 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47327C1176D0033F347 /* String+Extensions.swift */; };
 		59C8B47627C117870033F347 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47527C117870033F347 /* UITableView+Extensions.swift */; };
 		59C8B47827C117A10033F347 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47727C117A10033F347 /* ReusableView.swift */; };
@@ -27,6 +26,8 @@
 		59C8B49227C125150033F347 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B49127C125150033F347 /* User.swift */; };
 		59C8B49427C125780033F347 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B49327C125780033F347 /* Comment.swift */; };
 		59C8B49727C1260F0033F347 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B49627C1260F0033F347 /* Post.swift */; };
+		59C8B49D27C140490033F347 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B49C27C140490033F347 /* PostCell.swift */; };
+		59C8B49F27C144E80033F347 /* HomeDataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B49E27C144E80033F347 /* HomeDataSourceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +39,6 @@
 		59C8B46727C116660033F347 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		59C8B46927C116880033F347 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		59C8B46B27C116A70033F347 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		59C8B47127C1173A0033F347 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		59C8B47327C1176D0033F347 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		59C8B47527C117870033F347 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		59C8B47727C117A10033F347 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
@@ -54,6 +54,8 @@
 		59C8B49127C125150033F347 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		59C8B49327C125780033F347 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		59C8B49627C1260F0033F347 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		59C8B49C27C140490033F347 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		59C8B49E27C144E80033F347 /* HomeDataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSourceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +113,6 @@
 		59C8B45927C10C0B0033F347 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				59C8B47127C1173A0033F347 /* BaseViewController.swift */,
 				59C8B47D27C1180B0033F347 /* BaseProtocols.swift */,
 			);
 			path = Base;
@@ -240,6 +241,7 @@
 		59C8B46F27C116C10033F347 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				59C8B49E27C144E80033F347 /* HomeDataSourceManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -247,6 +249,7 @@
 		59C8B47027C116C60033F347 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				59C8B49B27C140360033F347 /* Cell */,
 				59C8B46B27C116A70033F347 /* HomeView.swift */,
 			);
 			path = Views;
@@ -293,6 +296,14 @@
 				59C8B48D27C120B30033F347 /* NetworkLayer.swift */,
 			);
 			path = Layer;
+			sourceTree = "<group>";
+		};
+		59C8B49B27C140360033F347 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				59C8B49C27C140490033F347 /* PostCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,10 +401,11 @@
 			files = (
 				59C8B48027C1182A0033F347 /* TypeAliases.swift in Sources */,
 				59C8B47A27C117C40033F347 /* VisualContentsManagers.swift in Sources */,
-				59C8B47227C1173A0033F347 /* BaseViewController.swift in Sources */,
 				59C8B48E27C120B30033F347 /* NetworkLayer.swift in Sources */,
 				59C8B49727C1260F0033F347 /* Post.swift in Sources */,
 				59C8B49027C1220E0033F347 /* AlertFactory.swift in Sources */,
+				59C8B49F27C144E80033F347 /* HomeDataSourceManager.swift in Sources */,
+				59C8B49D27C140490033F347 /* PostCell.swift in Sources */,
 				59C8B47627C117870033F347 /* UITableView+Extensions.swift in Sources */,
 				59C8B44427C106A40033F347 /* AppDelegate.swift in Sources */,
 				59C8B47E27C1180B0033F347 /* BaseProtocols.swift in Sources */,
