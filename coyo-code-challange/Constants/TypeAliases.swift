@@ -6,6 +6,5 @@
 //
 
 import Foundation
-import CoreLocation
 
 public typealias StringClosure = (String) -> Void

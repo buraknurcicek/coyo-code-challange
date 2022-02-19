@@ -14,7 +14,7 @@ final class HomeViewController: UIViewController {
     private let homeView = HomeView()
     private var viewModel: HomeViewModel
     private var tableViewManager = HomeTableViewManager(viewModels: [])
-    private var alertFactory: AlertFactoryService = AlertHelper()
+    private var alertFactory: AlertFactoryProtocol = AlertHelper()
 
     // MARK: - Init
     init(viewModel: HomeViewModel) {

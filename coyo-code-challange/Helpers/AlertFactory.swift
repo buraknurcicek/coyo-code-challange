@@ -8,8 +8,8 @@
 import UIKit
 import Foundation
 
-// MARK: - AlertFactoryService
-protocol AlertFactoryService {
+// MARK: - AlertFactoryProtocol
+protocol AlertFactoryProtocol {
     var delegate: AlertActionDelegate? { get set }
     func build(alertData: AlertViewData) -> UIViewController
 }
@@ -20,12 +20,12 @@ protocol AlertActionDelegate: AnyObject {
 }
 
 // MARK: - AlertHelper
-final class AlertHelper: AlertFactoryService {
+final class AlertHelper: AlertFactoryProtocol {
 
     // MARK: - Properties
     weak var delegate: AlertActionDelegate?
 
-    // MARK: - Functions
+    // MARK: - Accessible Functions
     func build(alertData: AlertViewData) -> UIViewController {
         let controller = UIAlertController(title: alertData.title,
                                            message: alertData.message,
@@ -40,6 +40,7 @@ final class AlertHelper: AlertFactoryService {
     }
 }
 
+// MARK: - AlertViewData
 struct AlertViewData {
     let title: String
     let message: String

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - HomeTableViewManagerDelegate
 protocol HomeTableViewManagerDelegate: AnyObject {
     func didSelect(indexPath: IndexPath)
 }

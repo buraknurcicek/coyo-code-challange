@@ -36,7 +36,7 @@ final class HomeViewModel: NSObject {
     func getPost(index: Int) -> Post {
         return posts[index]
     }
-    
+
     // MARK: - Private Functions
     private func configure(with posts: [Post]) {
         cellViewModels.removeAll()
