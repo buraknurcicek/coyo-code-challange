@@ -10,16 +10,12 @@ import UIKit
 // MARK: - PostCell
 final class PostCell: UITableViewCell, ReusableView {
 
-    // MARK: - Views
+    // MARK: - Private Properties
     private lazy var containerView = makeContainerView()
     private lazy var postTitleLabel = makeTitleLabel()
     private lazy var postDescriptionLabel = makeDescriptionLabel()
 
-    // MARK: - ViewModel
-    class ViewModel {
-        var title: String?
-        var description: String?
-    }
+    private var viewModel : ViewModel?
 
     private enum Constants {
         static let padding: CGFloat = 10
@@ -30,7 +26,11 @@ final class PostCell: UITableViewCell, ReusableView {
         static let labelHeight: CGFloat = 40
     }
 
-    private var viewModel : ViewModel?
+    // MARK: - ViewModel
+    class ViewModel {
+        var title: String?
+        var description: String?
+    }
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

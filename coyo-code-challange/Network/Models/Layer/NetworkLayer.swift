@@ -73,7 +73,7 @@ public protocol NetworkDispatcher {
 }
 
 public struct URLSessionNetworkDispatcher: NetworkDispatcher {
-    public static let instance = URLSessionNetworkDispatcher()
+   public static let instance = URLSessionNetworkDispatcher()
     private init() {}
 
     public func dispatch(request: RequestData, onSuccess: @escaping (Data) -> Void, onError: @escaping (Error) -> Void) {

@@ -16,8 +16,6 @@ final class HomeViewController: UIViewController {
     private var dataManager = HomeDataSourceManager(viewModels: [])
     private var alertFactory: AlertFactoryService = AlertHelper()
 
-    // MARK: - Private Properties
-
     // MARK: - Init
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -51,6 +49,7 @@ final class HomeViewController: UIViewController {
         homeView.tableView.reloadData()
     }
 
+    // MARK: - Private Functions
     private func showAlert() {
         let alertData = AlertViewData(title: LocalizableManager.general_error_title.value,
                                       message: LocalizableManager.general_error_description.value,

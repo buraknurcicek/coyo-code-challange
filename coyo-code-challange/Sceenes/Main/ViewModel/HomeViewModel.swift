@@ -33,6 +33,10 @@ final class HomeViewModel: NSObject {
     }
 
     private func configure(with posts: [Post]) {
+        if posts.isEmpty {
+            delegate?.showPlaceholderView()
+            return
+        }
         let viewModels = posts.map({
             PostCell.createViewModel(with: $0)
         })

@@ -33,7 +33,7 @@ final class HomeView: UIView {
     }
 }
 
-// MARK: - Extensions
+// MARK: - Private Extensions
 private extension HomeView {
     func setupViews() {
         addTableView()
