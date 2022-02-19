@@ -20,6 +20,6 @@ final class PostDetailViewModel: NSObject {
 
     // MARK: - Accessible Functions
     func fetchData() {
-
+        
     }
 }

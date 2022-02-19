@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - HomeViewDelegate
 protocol HomeViewDelegate: AnyObject {
     func refresh()
 }
@@ -62,11 +63,10 @@ private extension HomeView {
     func addTableView() {
         addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)])
     }
 
     func addRefreshControl() {
