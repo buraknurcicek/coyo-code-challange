@@ -14,7 +14,6 @@ public enum ApiError: Error {
 
 public enum RequestMethod: String {
     case get = "GET"
-    case post = "POST"
 }
 
 public struct RequestData {
@@ -113,7 +112,7 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
             return
         }
 
-        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+        URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
             if let error = error {
                 onError(error)
                 return

@@ -7,23 +7,61 @@
 
 import UIKit
 
-class HomeViewController: BaseViewController {
+// MARK: - HomeViewController
+final class HomeViewController: UIViewController {
+
+    // MARK: - Private Properties
+    private let homeView = HomeView()
+    private var viewModel: HomeViewModel
+    private var dataManager = HomeDataSourceManager(viewModels: [])
+
+    // MARK: - Private Properties
+
+    // MARK: - Init
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        return nil
+    }
+
+    // MARK: - Life-Cycle
+    override func loadView() {
+        super.loadView()
+        title = "Main"
+        view = homeView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
+        viewModel.fetchData()
+    }
 
-        view.backgroundColor = .red
+    // MARK: - Accessible Functions
+    func setDailyForecastTableView(dataSource: UITableViewDataSource) {
+        homeView.tableView.dataSource = dataSource
+    }
+
+    func reloadTableView() {
+        homeView.tableView.reloadData()
+    }
+}
+
+extension HomeViewController: HomeViewModelProtocol{
+    func populateTableView(with viewModels: [PostCell.ViewModel]) {
+        dataManager = HomeDataSourceManager(viewModels: viewModels)
+        homeView.setTableView(dataSource: dataManager)
+        homeView.reloadTableView()
+    }
+
+    func completedWithError(_ error: String) {
+        // TODO - Show Alert
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showPlaceholderView() {
+        // TODO - If is location services auth is denied, show placeholder view
     }
-    */
-
 }

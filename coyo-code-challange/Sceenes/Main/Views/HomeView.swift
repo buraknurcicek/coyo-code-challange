@@ -7,14 +7,58 @@
 
 import UIKit
 
-class HomeView: UIView {
+// MARK: - HomeView
+final class HomeView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    // MARK: - Views
+    lazy var tableView = makeTableView()
+
+    private enum Constants {
+        static let headerHeight: CGFloat = 300
     }
-    */
+    // MARK: - Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
 
+    required init?(coder: NSCoder) {
+        return nil
+    }
+
+    // MARK: - Accessible Functions
+    func setTableView(dataSource: UITableViewDataSource) {
+        tableView.dataSource = dataSource
+    }
+
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+}
+
+// MARK: - Extensions
+private extension HomeView {
+    func setupViews() {
+        addTableView()
+    }
+
+    func addTableView() {
+        addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+
+    func makeTableView() -> UITableView {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(PostCell.self)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.isScrollEnabled = false
+        tableView.separatorStyle = .none
+        return tableView
+    }
 }
