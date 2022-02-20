@@ -13,8 +13,8 @@ final class PostCell: UITableViewCell, ReusableView {
     // MARK: - Private Properties
     private lazy var containerView = makeContainerView()
     private lazy var postImageView = makeImageView()
-    private lazy var postTitleLabel = makeTitleLabel()
-    private lazy var postDescriptionLabel = makeDescriptionLabel()
+    private lazy var postTitleLabel = makeBoldLabel()
+    private lazy var postDescriptionLabel = makeRegularLabel()
 
     private var viewModel : ViewModel?
 
@@ -120,16 +120,16 @@ private extension PostCell {
         return imageView
     }
 
-    func makeTitleLabel() -> UILabel {
+    func makeBoldLabel() -> UILabel {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
+        label.font = .boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
 
-    func makeDescriptionLabel() -> UILabel {
+    func makeRegularLabel() -> UILabel {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }

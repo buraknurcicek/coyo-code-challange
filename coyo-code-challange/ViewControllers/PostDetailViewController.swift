@@ -13,6 +13,8 @@ final class PostDetailViewController: UIViewController {
     // MARK: - Private Properties
     private let postDetailView = PostDetailView()
     private var viewModel: PostDetailViewModel
+    private var tableViewManager = PostDetailTableViewManager(viewModels: [])
+    private var alertFactory: AlertFactoryProtocol = AlertHelper()
 
     // MARK: - Init
     init(viewModel: PostDetailViewModel) {
@@ -33,6 +35,34 @@ final class PostDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         viewModel.fetchData()
+    }
+
+    // MARK: - Private Functions
+    private func showAlert() {
+        let alertData = AlertViewData(title: LocalizableManager.general_error_title.value,
+                                      message: LocalizableManager.general_error_description.value,
+                                      okActionTitle: LocalizableManager.general_ok.value)
+
+        let alert = alertFactory.build(alertData: alertData)
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - HomeViewModelDelegate
+extension PostDetailViewController: PostDetailViewModelDelegate {
+    func populateTableView(with viewModels: [CommentCell.ViewModel]) {
+        tableViewManager = PostDetailTableViewManager(viewModels: viewModels)
+        postDetailView.setTableView(dataSource: tableViewManager)
+        postDetailView.reloadTableView()
+    }
+
+    func completedWithError() {
+        showAlert()
+    }
+
+    func showPlaceholderView() {
+        // TO DO - If is location services auth is denied, show placeholder view
     }
 }
