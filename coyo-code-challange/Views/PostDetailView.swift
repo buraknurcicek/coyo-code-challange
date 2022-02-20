@@ -37,6 +37,7 @@ final class PostDetailView: UIView {
 // MARK: - Private Extensions
 private extension PostDetailView {
     func setupViews() {
+        backgroundColor = .white
         addHeaderView()
         addTableView()
     }

@@ -117,6 +117,7 @@ private extension HeaderView {
 
     func makeContainerView() -> UIView {
         let view = UIView()
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
@@ -141,7 +142,6 @@ private extension HeaderView {
 
     func makeLineView() -> UIView {
         let view = UIView()
-        view.backgroundColor = .lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }

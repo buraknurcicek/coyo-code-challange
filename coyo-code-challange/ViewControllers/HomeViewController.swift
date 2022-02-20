@@ -67,7 +67,7 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeViewModelDelegate
 extension HomeViewController: HomeViewModelDelegate {
     func populateTableView(with viewModels: [PostCell.ViewModel]) {
-        tableViewManager = HomeTableViewManager(viewModels: viewModels)
+        tableViewManager.viewModels = viewModels
         homeView.setTableView(dataSource: tableViewManager)
         homeView.setTableView(delegate: tableViewManager)
         homeView.reloadTableView()

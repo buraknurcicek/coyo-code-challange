@@ -13,12 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let post = Post(userId: 1,
-                        id: 1,
-                        title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-                        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto")
-        
-        
         let viewModel = HomeViewModel()
         let rootViewController = HomeViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: rootViewController)

@@ -16,7 +16,7 @@ protocol HomeTableViewManagerDelegate: AnyObject {
 final class HomeTableViewManager: NSObject {
 
     // MARK: - Private Properties
-    private let viewModels: [PostCell.ViewModel]
+    var viewModels: [PostCell.ViewModel]
 
     weak var delegate: HomeTableViewManagerDelegate?
 
