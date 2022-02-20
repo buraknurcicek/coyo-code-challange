@@ -54,7 +54,9 @@ final class CommentCell: UITableViewCell, ReusableView {
     }
 
     func populate(with viewModel: ViewModel) {
-        nameLabel.text = viewModel.name
+        if let name = viewModel.name {
+            nameLabel.text = "\(LocalizableManager.general_author.value) \(name)"
+        }
         emailLabel.text = viewModel.email
         bodyLabel.text = viewModel.body
     }
@@ -64,8 +66,8 @@ final class CommentCell: UITableViewCell, ReusableView {
 private extension CommentCell {
     func setupViews() {
         addContainerView()
-        addNameLabel()
         addEmailLabel()
+        addNameLabel()
         addBodyLabel()
     }
 
@@ -83,8 +85,16 @@ private extension CommentCell {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Constants.padding),
             nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Constants.padding),
-            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -Constants.padding),
-            nameLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight)])
+            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -Constants.padding)])
+    }
+
+    func addBodyLabel() {
+        containerView.addSubview(bodyLabel)
+        NSLayoutConstraint.activate([
+            bodyLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            bodyLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            bodyLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Constants.padding / 2),
+            bodyLabel.bottomAnchor.constraint(equalTo: emailLabel.topAnchor, constant: -Constants.padding)])
     }
 
     func addEmailLabel() {
@@ -93,15 +103,6 @@ private extension CommentCell {
             emailLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.padding),
             emailLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -Constants.padding),
             emailLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight)])
-    }
-
-    func addBodyLabel() {
-        containerView.addSubview(bodyLabel)
-        NSLayoutConstraint.activate([
-            bodyLabel.bottomAnchor.constraint(equalTo: emailLabel.topAnchor, constant: -Constants.padding),
-            bodyLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            bodyLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-            bodyLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Constants.padding / 2)])
     }
 
     func makeContainerView() -> UIView {
@@ -118,6 +119,8 @@ private extension CommentCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }
 
@@ -126,6 +129,7 @@ private extension CommentCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12)
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }
 }

@@ -23,7 +23,7 @@ final class PostCell: UITableViewCell, ReusableView {
         static let padding: CGFloat = 10
         static let containerRadius: CGFloat = 15
         static let borderWidth: CGFloat = 1
-        static let imageSize: CGFloat = 60
+        static let imageSize: CGFloat = 30
     }
 
     // MARK: - ViewModel
@@ -80,25 +80,25 @@ private extension PostCell {
         NSLayoutConstraint.activate([
             postImageView.widthAnchor.constraint(equalToConstant: Constants.imageSize),
             postImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
-            postImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Constants.padding),
-            postImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.padding),
-            postImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Constants.padding)])
+            postImageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            postImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Constants.padding / 2)])
     }
 
     func addPostTitleLabel() {
         containerView.addSubview(postTitleLabel)
         NSLayoutConstraint.activate([
-            postTitleLabel.topAnchor.constraint(equalTo: postImageView.topAnchor),
-            postTitleLabel.leadingAnchor.constraint(equalTo: postImageView.trailingAnchor, constant: Constants.padding),
+            postTitleLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: Constants.padding / 2),
+            postTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Constants.padding),
             postTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -Constants.padding)])
     }
 
     func addPostDescriptionLabel() {
         containerView.addSubview(postDescriptionLabel)
         NSLayoutConstraint.activate([
-            postDescriptionLabel.bottomAnchor.constraint(equalTo: postImageView.bottomAnchor),
-            postDescriptionLabel.leadingAnchor.constraint(equalTo: postImageView.trailingAnchor, constant: Constants.padding),
-            postDescriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -Constants.padding)])
+            postDescriptionLabel.topAnchor.constraint(equalTo: postTitleLabel.bottomAnchor, constant: Constants.padding / 2),
+            postDescriptionLabel.leadingAnchor.constraint(equalTo: postTitleLabel.leadingAnchor),
+            postDescriptionLabel.trailingAnchor.constraint(equalTo: postTitleLabel.trailingAnchor),
+            postDescriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.padding)])
     }
 
     func makeContainerView() -> UIView {
@@ -124,6 +124,7 @@ private extension PostCell {
     func makeBoldLabel() -> UILabel {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
@@ -131,6 +132,7 @@ private extension PostCell {
     func makeRegularLabel() -> UILabel {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
