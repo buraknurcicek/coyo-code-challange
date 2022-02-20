@@ -19,8 +19,8 @@ protocol AlertActionDelegate: AnyObject {
     func okAction()
 }
 
-// MARK: - AlertHelper
-final class AlertHelper: AlertFactoryProtocol {
+// MARK: - AlertFactory
+final class AlertFactory: AlertFactoryProtocol {
 
     // MARK: - Properties
     weak var delegate: AlertActionDelegate?

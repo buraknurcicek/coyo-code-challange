@@ -12,24 +12,25 @@ public enum ApiError: Error {
     case noData
 }
 
-public enum HTTPMethod: String {
+public enum RequestMethod: String {
     case get = "GET"
 }
 
 public struct RequestData {
     public let path: String
-    public let method: HTTPMethod
+    public let method: RequestMethod
+    public let queryParams: [String: Any?]?
     public let params: [String: Any?]?
     public let headers: [String: String]?
 
-    public init (
-        path: String,
-        method: HTTPMethod = .get,
-        params: [String: Any?]? = nil,
-        headers: [String: String]? = nil
-    ) {
+    public init (path: String,
+                 method: RequestMethod = .get,
+                 queryParams: [String: Any?]? = nil,
+                 params: [String: Any?]? = nil,
+                 headers: [String: String]? = nil) {
         self.path = path
         self.method = method
+        self.queryParams = queryParams
         self.params = params
         self.headers = headers
     }
@@ -89,26 +90,37 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
             if let params = request.params {
                 urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
             }
+            if let queryParams = request.queryParams {
+                guard var components = URLComponents(string: url.absoluteString) else {
+                    return
+                }
+                var queryItems: [URLQueryItem] = []
+
+                for (name, value) in queryParams {
+                    queryItems.append(URLQueryItem(name: name, value: value as? String))
+                }
+
+                components.queryItems = queryItems
+                urlRequest = URLRequest(url: components.url ?? url)
+            }
         } catch let error {
             onError(error)
             return
         }
 
-        if let headers = request.headers {
-            urlRequest.allHTTPHeaderFields = headers
+        DispatchQueue.global(qos: .background).async {
+            URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
+                if let error = error {
+                    onError(error)
+                    return
+                }
+
+                guard let data = data else {
+                    onError(ApiError.noData)
+                    return
+                }
+                onSuccess(data)
+            }.resume()
         }
-
-        URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
-            if let error = error {
-                onError(error)
-                return
-            }
-
-            guard let _data = data else {
-                onError(ApiError.noData)
-                return
-            }
-            onSuccess(_data)
-        }.resume()
     }
 }

@@ -16,7 +16,7 @@ protocol HomeViewDelegate: AnyObject {
 final class HomeView: UIView {
 
     // MARK: - Views
-    lazy var tableView = makeTableView()
+    private lazy var tableView = makeTableView()
 
     // MARK: - Private Properties
     private let refreshControl = UIRefreshControl()
