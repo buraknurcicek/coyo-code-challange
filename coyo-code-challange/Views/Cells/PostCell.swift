@@ -48,16 +48,18 @@ final class PostCell: UITableViewCell, ReusableView {
     }
 
     // MARK: - Accessible Functions
-    static func createViewModel(with post: Post) -> ViewModel {
+    static func createViewModel(post: Post, user: User) -> ViewModel {
         let viewModel = ViewModel()
         viewModel.title = post.title
         viewModel.description = post.body
+        viewModel.author = user.name
         return viewModel
     }
 
     func populate(with viewModel: ViewModel) {
         postTitleLabel.text = viewModel.title
         postDescriptionLabel.text = viewModel.description
+        postAuthorLabel.text = viewModel.author
     }
 }
 
@@ -107,7 +109,6 @@ private extension PostCell {
 
     func addPostAuthorLabel() {
         containerView.addSubview(postAuthorLabel)
-        postAuthorLabel.text = "yazar"
         postAuthorLabel.textAlignment = .center
         NSLayoutConstraint.activate([
             postAuthorLabel.trailingAnchor.constraint(equalTo: postDescriptionLabel.trailingAnchor),

@@ -21,7 +21,7 @@ final class HomeViewModel: NSObject {
     private let dispatchGroup = DispatchGroup()
     private var cellViewModels: [PostCell.ViewModel] = []
     private var posts: [Post] = []
-    private var user: User?
+    private var users: [User] = []
 
     weak var delegate: HomeViewModelDelegate?
 
@@ -50,19 +50,21 @@ final class HomeViewModel: NSObject {
         PostsRequest().execute(
             onSuccess: { [weak self] posts in
                 self?.posts = posts
-                self?.configure(with: posts)
+                self?.dispatchGroup.leave()
             }, onError: { [weak self] (_) in
                 self?.delegate?.completedWithError()
+                self?.dispatchGroup.leave()
             })
     }
 
     private func fetchUser() {
         UserRequest().execute(
             onSuccess: { [weak self] users in
-                self?.user = users.first(where: {$0.id == 1})
-
+                self?.users = users
+                self?.dispatchGroup.leave()
             }, onError: { [weak self] (_) in
                 self?.delegate?.completedWithError()
+                self?.dispatchGroup.leave()
             })
     }
 
@@ -71,14 +73,14 @@ final class HomeViewModel: NSObject {
     }
 
     // MARK: - Private Functions
-    private func configure(with posts: [Post]) {
+    private func configure() {
         cellViewModels.removeAll()
         if posts.isEmpty {
             delegate?.showPlaceholderView()
             return
         }
         let viewModels = posts.map({
-            PostCell.createViewModel(with: $0)
+            PostCell.createViewModel(post: $0, user: users.first(where: {$0.id == }))
         })
         cellViewModels.append(contentsOf: viewModels)
         delegate?.populateTableView(with: cellViewModels)

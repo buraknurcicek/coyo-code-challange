@@ -45,6 +45,7 @@ final class HeaderView: UIView {
         return nil
     }
 
+    // MARK: - Accessible Functions
     func populate(with viewModel: ViewModel) {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
