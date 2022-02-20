@@ -14,7 +14,7 @@ Simple social media application based on MVVM architecture with modular networki
 * Build and Run
 
 # What's done on the code challange?
-* Developed on 4 different branches including; master, feature/main, feature/post-detail, improvement/base. (I forgot to create development branch)
+* Developed on 4 different branches including; master, feature/main, feature/post-detail, improvement/base.
 * UI developed programmatically
 * Modular Networking
 * Basic MVVM Architecture with delegations
@@ -40,6 +40,7 @@ Simple social media application based on MVVM architecture with modular networki
 * I would develop an indicator view for API calls, a placeholder view for empty data states.
 * I would add UI, Snapshot and Unit test
 * I could use Result pattern on Network Layer. And, my NetworkLayer needs much more development.
+* I forgot to create development branch.
 * I am looking forward to get your feedbacks in order to improve my techinal skills. You can reach me via email :)
 
 # Thanks
