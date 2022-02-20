@@ -30,7 +30,8 @@ Simple social media application based on MVVM architecture with modular networki
 * Shows posts on the main screen and its related comments on the post detail screen
 
 # ScreenShots
-<a href="https://ibb.co/3TSrF3k"><img src="https://i.ibb.co/qDmygSx/Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-27.png" alt="Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-27" border="0"></a><a href="https://ibb.co/bJP1MsH"><img src="https://i.ibb.co/k1xKs43/Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-31.png" alt="Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-31" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>foto ke</a><br />
+<a href="https://ibb.co/3TSrF3k"><img src="https://i.ibb.co/3TSrF3k/Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-27.png" alt="Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-27" border="0"></a>
+<a href="https://ibb.co/bJP1MsH"><img src="https://i.ibb.co/bJP1MsH/Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-31.png" alt="Simulator-Screen-Shot-i-Phone-12-2022-02-20-at-19-26-31" border="0"></a>
 
 # P.S
 * I choose MVVM. Because, that is a very simple 2 screens app, I didn't want to set up a complex architecture. And, my knowledge of MVVM is much more than others. If I use VIPER pattern, there will be so many files for two screens app.
@@ -39,6 +40,7 @@ Simple social media application based on MVVM architecture with modular networki
 * I would develop an indicator view for API calls, a placeholder view for empty data states.
 * I would add UI, Snapshot and Unit test
 * I could use Result pattern on Network Layer. And, my NetworkLayer needs much more development.
+* I am looking forward to get your feedbacks in order to improve my techinal skills. You can reach me via email :)
 
 # Thanks
 * Many thanks to COYO company for giving me this opportunity
