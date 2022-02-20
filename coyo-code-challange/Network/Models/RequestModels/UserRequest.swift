@@ -5,4 +5,9 @@
 //  Created by Burak Nurçiçek on 20.02.2022.
 //
 
-import Foundation
+struct UserRequest: RequestType {
+    typealias ResponseType = [User]
+    var data: RequestData {
+        return RequestData(path: "https://jsonplaceholder.typicode.com/users")
+    }
+}

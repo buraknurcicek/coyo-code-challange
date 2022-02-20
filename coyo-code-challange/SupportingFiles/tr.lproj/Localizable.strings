@@ -10,3 +10,4 @@
 "general_error_title" = "Hata";
 "main_title" = "Ana Sayfa";
 "post_detail_title" = "Gönderi Detay";
+"number_of_comment" = "Yorum Sayısı: ";

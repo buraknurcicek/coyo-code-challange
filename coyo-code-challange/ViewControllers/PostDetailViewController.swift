@@ -57,6 +57,14 @@ extension PostDetailViewController: PostDetailViewModelDelegate {
         postDetailView.setTableView(dataSource: tableViewManager)
         postDetailView.reloadTableView()
     }
+    
+    func populateHeaderView(with post: Post, commentCount: Int) {
+        let viewModel = HeaderView.ViewModel()
+        viewModel.title = post.title
+        viewModel.description = post.body
+        viewModel.commentCount = commentCount.toString
+        postDetailView.populateHeaderView(with: viewModel)
+    }
 
     func completedWithError() {
         showAlert()

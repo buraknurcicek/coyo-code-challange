@@ -117,7 +117,7 @@ private extension CommentCell {
     func makeBoldLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 16)
         return label
     }
 

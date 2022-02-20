@@ -16,6 +16,7 @@
 		59A38D2627C1AC2D003410B8 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A38D2527C1AC2D003410B8 /* CommentCell.swift */; };
 		59A38D2827C1B37A003410B8 /* PostDetailTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A38D2727C1B37A003410B8 /* PostDetailTableViewManager.swift */; };
 		59A38D2A27C1B996003410B8 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A38D2927C1B996003410B8 /* HeaderView.swift */; };
+		59A38D2C27C28190003410B8 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A38D2B27C28190003410B8 /* Int+Extensions.swift */; };
 		59C8B44427C106A40033F347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B44327C106A40033F347 /* AppDelegate.swift */; };
 		59C8B44D27C106A50033F347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C8B44C27C106A50033F347 /* Assets.xcassets */; };
 		59C8B45027C106A50033F347 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59C8B44E27C106A50033F347 /* LaunchScreen.storyboard */; };
@@ -28,7 +29,6 @@
 		59C8B47A27C117C40033F347 /* VisualContentsManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47927C117C40033F347 /* VisualContentsManagers.swift */; };
 		59C8B47C27C117F20033F347 /* LocalizableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47B27C117F20033F347 /* LocalizableManager.swift */; };
 		59C8B47E27C1180B0033F347 /* BaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47D27C1180B0033F347 /* BaseProtocols.swift */; };
-		59C8B48027C1182A0033F347 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B47F27C1182A0033F347 /* TypeAliases.swift */; };
 		59C8B48327C11FF50033F347 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59C8B48527C11FF50033F347 /* Localizable.strings */; };
 		59C8B48E27C120B30033F347 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B48D27C120B30033F347 /* NetworkLayer.swift */; };
 		59C8B49027C1220E0033F347 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C8B48F27C1220E0033F347 /* AlertFactory.swift */; };
@@ -49,6 +49,7 @@
 		59A38D2527C1AC2D003410B8 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		59A38D2727C1B37A003410B8 /* PostDetailTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewManager.swift; sourceTree = "<group>"; };
 		59A38D2927C1B996003410B8 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		59A38D2B27C28190003410B8 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		59C8B44027C106A40033F347 /* coyo-code-challange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "coyo-code-challange.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C8B44327C106A40033F347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59C8B44C27C106A50033F347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		59C8B47927C117C40033F347 /* VisualContentsManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualContentsManagers.swift; sourceTree = "<group>"; };
 		59C8B47B27C117F20033F347 /* LocalizableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableManager.swift; sourceTree = "<group>"; };
 		59C8B47D27C1180B0033F347 /* BaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocols.swift; sourceTree = "<group>"; };
-		59C8B47F27C1182A0033F347 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		59C8B48427C11FF50033F347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		59C8B48627C120190033F347 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		59C8B48727C120190033F347 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 			children = (
 				59C8B45827C10C050033F347 /* App */,
 				59C8B45927C10C0B0033F347 /* Base */,
-				59C8B45A27C10C150033F347 /* Constants */,
 				59C8B45B27C10C1A0033F347 /* Extensions */,
 				59C8B45D27C10C2E0033F347 /* Helpers */,
 				59C8B45E27C10C330033F347 /* Managers */,
@@ -175,19 +174,12 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		59C8B45A27C10C150033F347 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				59C8B47F27C1182A0033F347 /* TypeAliases.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		59C8B45B27C10C1A0033F347 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				59C8B47327C1176D0033F347 /* String+Extensions.swift */,
 				59C8B47527C117870033F347 /* UITableView+Extensions.swift */,
+				59A38D2B27C28190003410B8 /* Int+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -362,7 +354,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59C8B48027C1182A0033F347 /* TypeAliases.swift in Sources */,
 				59C8B47A27C117C40033F347 /* VisualContentsManagers.swift in Sources */,
 				59A38D2827C1B37A003410B8 /* PostDetailTableViewManager.swift in Sources */,
 				59C8B48E27C120B30033F347 /* NetworkLayer.swift in Sources */,
@@ -375,6 +366,7 @@
 				59C8B47627C117870033F347 /* UITableView+Extensions.swift in Sources */,
 				59C8B44427C106A40033F347 /* AppDelegate.swift in Sources */,
 				59C8B47E27C1180B0033F347 /* BaseProtocols.swift in Sources */,
+				59A38D2C27C28190003410B8 /* Int+Extensions.swift in Sources */,
 				59A38D2027C1979E003410B8 /* PostDetailView.swift in Sources */,
 				59C8B49227C125150033F347 /* User.swift in Sources */,
 				59C8B47C27C117F20033F347 /* LocalizableManager.swift in Sources */,

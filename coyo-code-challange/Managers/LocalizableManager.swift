@@ -14,6 +14,7 @@ enum LocalizableManager: GenericValueProtocol {
     case general_ok
     case general_error_title
     case general_error_description
+    case number_of_comment
 
     var value: String {
         switch self {
@@ -27,6 +28,8 @@ enum LocalizableManager: GenericValueProtocol {
             return "general_error_title".toLocalize()
         case .general_error_description:
             return "general_error_description".toLocalize()
+        case .number_of_comment:
+            return "number_of_comment".toLocalize()
         }
     }
 }

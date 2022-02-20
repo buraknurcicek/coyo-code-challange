@@ -123,7 +123,7 @@ private extension PostCell {
 
     func makeBoldLabel() -> UILabel {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }

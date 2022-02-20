@@ -10,6 +10,7 @@ import Foundation
 // MARK: - PostDetailViewModelDelegate
 protocol PostDetailViewModelDelegate: AnyObject {
     func populateTableView(with viewModels: [CommentCell.ViewModel])
+    func populateHeaderView(with post: Post, commentCount: Int)
     func completedWithError()
     func showPlaceholderView()
 }
@@ -18,8 +19,10 @@ protocol PostDetailViewModelDelegate: AnyObject {
 final class PostDetailViewModel: NSObject {
 
     // MARK: - Private Properties
+    private let dispatchGroup = DispatchGroup()
     private var cellViewModels: [CommentCell.ViewModel] = []
     private var post: Post
+    private var user: User?
     private var comments: [Comment] = []
 
     weak var delegate: PostDetailViewModelDelegate?
@@ -31,7 +34,8 @@ final class PostDetailViewModel: NSObject {
 
     // MARK: - Accessible Functions
     func fetchData() {
-        CommentsRequest().execute(
+        guard let id = post.id else { return }
+        CommentsRequest(postId: id).execute(
             onSuccess: { [weak self] comments in
                 self?.comments = comments
                 self?.configure(with: comments)
@@ -52,5 +56,6 @@ final class PostDetailViewModel: NSObject {
         })
         cellViewModels.append(contentsOf: viewModels)
         delegate?.populateTableView(with: cellViewModels)
+        delegate?.populateHeaderView(with: post, commentCount: comments.count)
     }
 }

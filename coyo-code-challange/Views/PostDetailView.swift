@@ -32,6 +32,10 @@ final class PostDetailView: UIView {
     func reloadTableView() {
         tableView.reloadData()
     }
+    
+    func populateHeaderView(with viewModel: HeaderView.ViewModel) {
+        headerView.populate(with: viewModel)
+    }
 }
 
 // MARK: - Private Extensions

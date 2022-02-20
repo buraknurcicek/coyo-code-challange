@@ -15,7 +15,6 @@ final class HeaderView: UIView {
     private lazy var titleLabel = makeBoldLabel()
     private lazy var descriptionLabel = makeBoldLabel()
     private lazy var commentCountLabel = makeRegularLabel()
-    private lazy var authorLabel = makeRegularLabel()
     private lazy var lineView = makeLineView()
 
     // MARK: - Private Properties
@@ -49,8 +48,9 @@ final class HeaderView: UIView {
     func populate(with viewModel: ViewModel) {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
-        authorLabel.text = viewModel.author
-        commentCountLabel.text = viewModel.commentCount
+        if let commentCount = viewModel.commentCount {
+            commentCountLabel.text = "\(LocalizableManager.number_of_comment.value) \(commentCount)"
+        }
     }
 }
 
@@ -58,10 +58,9 @@ final class HeaderView: UIView {
 private extension HeaderView {
     func setupViews() {
         addContainerView()
+        addCommentCountLabel()
         addTitleLabel()
         addDescriptionLabel()
-        addCommentCountLabel()
-        addAuthorLabel()
         addLineView()
     }
 
@@ -78,7 +77,7 @@ private extension HeaderView {
     func addTitleLabel() {
         containerView.addSubview(titleLabel)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Constants.padding * 2),
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Constants.padding),
             titleLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Constants.padding),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -Constants.padding)])
@@ -89,7 +88,8 @@ private extension HeaderView {
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.padding),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)])
+            descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: commentCountLabel.bottomAnchor, constant: -Constants.padding)])
     }
 
     func addCommentCountLabel() {
@@ -97,13 +97,6 @@ private extension HeaderView {
         NSLayoutConstraint.activate([
             commentCountLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.padding),
             commentCountLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -Constants.padding)])
-    }
-
-    func addAuthorLabel() {
-        containerView.addSubview(authorLabel)
-        NSLayoutConstraint.activate([
-            authorLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.padding),
-            authorLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: Constants.padding)])
     }
 
     func addLineView() {
@@ -124,10 +117,12 @@ private extension HeaderView {
 
     func makeBoldLabel() -> UILabel {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 16)
         label.textAlignment = .center
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "ömfdmödsa"
         return label
     }
 
@@ -135,7 +130,9 @@ private extension HeaderView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.textAlignment = .center
-        label.text = "mlvmsmöf"
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
