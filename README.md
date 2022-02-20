@@ -14,7 +14,7 @@ Simple social media application based on MVVM architecture with modular networki
 * Build and Run
 
 # What's done on the code challange?
-* Developed on 4 different branches
+* Developed on 4 different branches including; master, feature/main, feature/post-detail, improvement/base. (I forgot to create development branch)
 * UI developed programmatically
 * Modular Networking
 * Basic MVVM Architecture with delegations
