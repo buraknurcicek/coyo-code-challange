@@ -201,7 +201,6 @@
 				59C8B45B27C10C1A0033F347 /* Extensions */,
 				59C8B45D27C10C2E0033F347 /* Helpers */,
 				59C8B45E27C10C330033F347 /* Managers */,
-				59C8B48827C120650033F347 /* Network */,
 				59A38D1827C19357003410B8 /* ViewControllers */,
 				59A38D1927C19360003410B8 /* ViewModels */,
 				59A38D1727C19352003410B8 /* Views */,
@@ -265,13 +264,6 @@
 				59C8B48527C11FF50033F347 /* Localizable.strings */,
 			);
 			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		59C8B48827C120650033F347 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		59C8B48927C1207F0033F347 /* Models */ = {
