@@ -34,7 +34,7 @@ final class PostDetailView: UIView {
     }
 }
 
-// MARK: - PostDetailView
+// MARK: - Private Extensions
 private extension PostDetailView {
     func setupViews() {
         addHeaderView()

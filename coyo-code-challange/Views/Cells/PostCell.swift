@@ -10,12 +10,13 @@ import UIKit
 // MARK: - PostCell
 final class PostCell: UITableViewCell, ReusableView {
 
-    // MARK: - Private Properties
+    // MARK: - Views
     private lazy var containerView = makeContainerView()
     private lazy var postImageView = makeImageView()
     private lazy var postTitleLabel = makeBoldLabel()
     private lazy var postDescriptionLabel = makeRegularLabel()
 
+    // MARK: - Private Properties
     private var viewModel : ViewModel?
 
     private enum Constants {

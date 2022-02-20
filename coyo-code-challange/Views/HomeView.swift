@@ -18,7 +18,7 @@ final class HomeView: UIView {
     // MARK: - Views
     lazy var tableView = makeTableView()
 
-    // MARK: - Properties
+    // MARK: - Private Properties
     private let refreshControl = UIRefreshControl()
 
     weak var delegate: HomeViewDelegate?

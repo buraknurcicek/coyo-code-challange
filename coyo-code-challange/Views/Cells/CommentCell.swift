@@ -16,6 +16,7 @@ final class CommentCell: UITableViewCell, ReusableView {
     private lazy var emailLabel = makeRegularLabel()
     private lazy var bodyLabel = makeRegularLabel()
 
+    // MARK: - Private Properties
     private var viewModel : ViewModel?
 
     private enum Constants {
@@ -59,6 +60,7 @@ final class CommentCell: UITableViewCell, ReusableView {
     }
 }
 
+// MARK: - Private Extensions
 private extension CommentCell {
     func setupViews() {
         addContainerView()

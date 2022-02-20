@@ -12,9 +12,9 @@ final class PostDetailViewController: UIViewController {
 
     // MARK: - Private Properties
     private let postDetailView = PostDetailView()
-    private var viewModel: PostDetailViewModel
     private var tableViewManager = PostDetailTableViewManager(viewModels: [])
     private var alertFactory: AlertFactoryProtocol = AlertHelper()
+    private var viewModel: PostDetailViewModel
 
     // MARK: - Init
     init(viewModel: PostDetailViewModel) {

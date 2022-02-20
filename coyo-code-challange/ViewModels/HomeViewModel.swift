@@ -17,9 +17,10 @@ protocol HomeViewModelDelegate: AnyObject {
 // MARK: - HomeViewModel
 final class HomeViewModel: NSObject {
 
-    // MARK: - Properties
+    // MARK: - Private Properties
     private var cellViewModels: [PostCell.ViewModel] = []
     private var posts: [Post] = []
+
     weak var delegate: HomeViewModelDelegate?
 
     // MARK: - Accessible Functions

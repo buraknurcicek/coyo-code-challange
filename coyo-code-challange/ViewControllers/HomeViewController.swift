@@ -12,9 +12,9 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Private Properties
     private let homeView = HomeView()
-    private var viewModel: HomeViewModel
     private var tableViewManager = HomeTableViewManager(viewModels: [])
     private var alertFactory: AlertFactoryProtocol = AlertHelper()
+    private var viewModel: HomeViewModel
 
     // MARK: - Init
     init(viewModel: HomeViewModel) {

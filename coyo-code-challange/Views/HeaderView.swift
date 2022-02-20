@@ -18,6 +18,9 @@ final class HeaderView: UIView {
     private lazy var authorLabel = makeRegularLabel()
     private lazy var lineView = makeLineView()
 
+    // MARK: - Private Properties
+    private var viewModel: ViewModel?
+
     private enum Constants {
         static let headerHeight: CGFloat = 200
         static let padding: CGFloat = 20
@@ -27,12 +30,10 @@ final class HeaderView: UIView {
     // MARK: - ViewModel
     class ViewModel {
         var title: String?
-        var description: Double?
-        var author: Double?
-        var commentCount: Double?
+        var description: String?
+        var author: String?
+        var commentCount: String?
     }
-
-    private var viewModel: ViewModel?
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -44,8 +45,16 @@ final class HeaderView: UIView {
     required init?(coder: NSCoder) {
         return nil
     }
+
+    func populate(with viewModel: ViewModel) {
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        authorLabel.text = viewModel.author
+        commentCountLabel.text = viewModel.commentCount
+    }
 }
 
+// MARK: - Private Extensions
 private extension HeaderView {
     func setupViews() {
         addContainerView()
