@@ -49,4 +49,4 @@ Simple social media application based on MVVM architecture with modular networki
 * e-mail: burak.nurcicek@gmail.com
 
 # Api
-* https://api.darksky.net
+* https://jsonplaceholder.typicode.com
