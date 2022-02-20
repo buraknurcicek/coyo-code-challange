@@ -34,14 +34,11 @@ final class HomeViewModel: NSObject {
             self.dispatchGroup.enter()
             self.fetchPosts()
 
-            self.dispatchGroup.wait()
-
             self.dispatchGroup.enter()
             self.fetchUser()
 
             self.dispatchGroup.notify(queue: DispatchQueue.main) {
-                //self.delegate?.populateHeaderView(with: self.headerViewModel)
-                //self.delegate?.populateTableView(with: self.cellViewModels)
+                self.configureData()
             }
         }
     }
@@ -73,14 +70,14 @@ final class HomeViewModel: NSObject {
     }
 
     // MARK: - Private Functions
-    private func configure() {
+    private func configureData() {
         cellViewModels.removeAll()
         if posts.isEmpty {
             delegate?.showPlaceholderView()
             return
         }
-        let viewModels = posts.map({
-            PostCell.createViewModel(post: $0, user: users.first(where: {$0.id == }))
+        let viewModels = posts.map({ post in
+            PostCell.createViewModel(post: post, user: users.first(where: {$0.id == post.userId}))
         })
         cellViewModels.append(contentsOf: viewModels)
         delegate?.populateTableView(with: cellViewModels)

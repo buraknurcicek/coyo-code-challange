@@ -48,11 +48,11 @@ final class PostCell: UITableViewCell, ReusableView {
     }
 
     // MARK: - Accessible Functions
-    static func createViewModel(post: Post, user: User) -> ViewModel {
+    static func createViewModel(post: Post, user: User?) -> ViewModel {
         let viewModel = ViewModel()
         viewModel.title = post.title
         viewModel.description = post.body
-        viewModel.author = user.name
+        viewModel.author = user?.name
         return viewModel
     }
 
