@@ -35,7 +35,7 @@ Simple social media application based on MVVM architecture with modular networki
 
 # P.S
 * I choose MVVM. Because, that is a very simple 2 screens app, I didn't want to set up a complex architecture. And, my knowledge of MVVM is much more than others. If I use VIPER pattern, there will be so many files for two screens app.
-* Due to my job, I couldn't focus on the challenge so much. If I had much more time, I would improve my code like below;
+* Due to my job, I couldn't focus on the challenge so much. I had less than 2 days in order to complete it. But if I had much more time, I would improve my code like below;
 * I used two different table view managers which are "HomeTableViewManager" and "PostDetailTableViewManager". It should be a generic table view manager.
 * I would develop an indicator view for API calls, a placeholder view for empty data states.
 * I would add UI, Snapshot and Unit test
