@@ -36,7 +36,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        viewModel.fetchData()
+        viewModel.configureApiCall()
     }
 
     // MARK: - Private Functions
@@ -92,7 +92,7 @@ extension HomeViewController: HomeTableViewManagerDelegate {
 // MARK: - HomeViewDelegate
 extension HomeViewController: HomeViewDelegate {
     func refresh() {
-        viewModel.fetchData()
+        viewModel.configureApiCall()
     }
 }
 

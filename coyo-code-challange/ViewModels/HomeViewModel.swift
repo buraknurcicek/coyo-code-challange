@@ -18,17 +18,49 @@ protocol HomeViewModelDelegate: AnyObject {
 final class HomeViewModel: NSObject {
 
     // MARK: - Private Properties
+    private let dispatchGroup = DispatchGroup()
     private var cellViewModels: [PostCell.ViewModel] = []
     private var posts: [Post] = []
+    private var user: User?
 
     weak var delegate: HomeViewModelDelegate?
 
     // MARK: - Accessible Functions
-    func fetchData() {
+    func configureApiCall() {
+        let operationQueue = OperationQueue()
+        operationQueue.underlyingQueue = .global()
+
+        operationQueue.addOperation {
+            self.dispatchGroup.enter()
+            self.fetchPosts()
+
+            self.dispatchGroup.wait()
+
+            self.dispatchGroup.enter()
+            self.fetchUser()
+
+            self.dispatchGroup.notify(queue: DispatchQueue.main) {
+                //self.delegate?.populateHeaderView(with: self.headerViewModel)
+                //self.delegate?.populateTableView(with: self.cellViewModels)
+            }
+        }
+    }
+
+    private func fetchPosts() {
         PostsRequest().execute(
             onSuccess: { [weak self] posts in
                 self?.posts = posts
                 self?.configure(with: posts)
+            }, onError: { [weak self] (_) in
+                self?.delegate?.completedWithError()
+            })
+    }
+
+    private func fetchUser() {
+        UserRequest().execute(
+            onSuccess: { [weak self] users in
+                self?.user = users.first(where: {$0.id == 1})
+
             }, onError: { [weak self] (_) in
                 self?.delegate?.completedWithError()
             })

@@ -19,10 +19,8 @@ protocol PostDetailViewModelDelegate: AnyObject {
 final class PostDetailViewModel: NSObject {
 
     // MARK: - Private Properties
-    private let dispatchGroup = DispatchGroup()
     private var cellViewModels: [CommentCell.ViewModel] = []
     private var post: Post
-    private var user: User?
     private var comments: [Comment] = []
 
     weak var delegate: PostDetailViewModelDelegate?

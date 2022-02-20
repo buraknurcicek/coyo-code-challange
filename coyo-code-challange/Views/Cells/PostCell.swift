@@ -13,6 +13,8 @@ final class PostCell: UITableViewCell, ReusableView {
     // MARK: - Views
     private lazy var containerView = makeContainerView()
     private lazy var postImageView = makeImageView()
+    private lazy var postAuthorLabel = makeRegularLabel()
+    private lazy var postAuthorEmailLabel = makeRegularLabel()
     private lazy var postTitleLabel = makeBoldLabel()
     private lazy var postDescriptionLabel = makeRegularLabel()
 
@@ -24,12 +26,14 @@ final class PostCell: UITableViewCell, ReusableView {
         static let containerRadius: CGFloat = 15
         static let borderWidth: CGFloat = 1
         static let imageSize: CGFloat = 30
+        static let labelHeight: CGFloat = 25
     }
 
     // MARK: - ViewModel
     class ViewModel {
         var title: String?
         var description: String?
+        var author: String?
     }
 
     // MARK: - Init
@@ -64,6 +68,7 @@ private extension PostCell {
         addPostImageView()
         addPostTitleLabel()
         addPostDescriptionLabel()
+        addPostAuthorLabel()
     }
 
     func addContainerView() {
@@ -97,8 +102,19 @@ private extension PostCell {
         NSLayoutConstraint.activate([
             postDescriptionLabel.topAnchor.constraint(equalTo: postTitleLabel.bottomAnchor, constant: Constants.padding / 2),
             postDescriptionLabel.leadingAnchor.constraint(equalTo: postTitleLabel.leadingAnchor),
-            postDescriptionLabel.trailingAnchor.constraint(equalTo: postTitleLabel.trailingAnchor),
-            postDescriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.padding)])
+            postDescriptionLabel.trailingAnchor.constraint(equalTo: postTitleLabel.trailingAnchor)])
+    }
+
+    func addPostAuthorLabel() {
+        containerView.addSubview(postAuthorLabel)
+        postAuthorLabel.text = "yazar"
+        postAuthorLabel.textAlignment = .center
+        NSLayoutConstraint.activate([
+            postAuthorLabel.trailingAnchor.constraint(equalTo: postDescriptionLabel.trailingAnchor),
+            postAuthorLabel.leadingAnchor.constraint(equalTo: postDescriptionLabel.leadingAnchor),
+            postAuthorLabel.topAnchor.constraint(equalTo: postDescriptionLabel.bottomAnchor, constant: Constants.padding),
+            postAuthorLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -Constants.padding),
+            postAuthorLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight)])
     }
 
     func makeContainerView() -> UIView {
